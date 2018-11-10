@@ -7,9 +7,9 @@ var mysql=require('mysql');
 //   ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password' 
 var connection=mysql.createPool({
     host: "cpsc304.czxlnqdoif9r.us-west-2.rds.amazonaws.com",
+    port: "3306",
     user: "cpsc304",
     password: "password"
- 
 });
 
 module.exports=connection;
