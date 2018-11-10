@@ -18,4 +18,16 @@ module.exports = function (app) {
     app.route('/').get(function (req, res, next) {
         res.send('Welcome to the our API');
     });
+
+    app.route('/new').post(function(req,res,next) {
+        //res.send("hello world~");
+        //console.log("post received");
+        task.addNewPerson(req.body,function(err,count){
+          if (err) {
+            res.json(err);
+          } else {
+            res.json(req.body);//or return count for 1 &amp;amp;amp; 0
+            }
+          });
+         });
 }
