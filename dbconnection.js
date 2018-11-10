@@ -6,8 +6,8 @@ var mysql=require('mysql');
 //Solution 1: run this SQL command on your db instance
 //   ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password' 
 var connection=mysql.createPool({
-    host: "localhost",
-    user: "root",
+    host: "cpsc304.czxlnqdoif9r.us-west-2.rds.amazonaws.com",
+    user: "cpsc304",
     password: "password"
  
 });
