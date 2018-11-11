@@ -11,4 +11,4 @@ var TaskController={
         return con.query("INSERT INTO cpsc304.Persons(PersonID, LastName, FirstName, DetailAddress, City) values (?,?,?,?,?)",[Persons.PersonID,Persons.LastName,Persons.FirstName,Persons.DetailAddress,Persons.City],callback);
     }
 };
- module.exports=TaskController; 
+module.exports=TaskController;
