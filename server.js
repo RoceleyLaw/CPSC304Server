@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // Access control
-app.use(require('cors')());
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
