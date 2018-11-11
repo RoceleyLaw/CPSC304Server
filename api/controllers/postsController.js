@@ -27,6 +27,15 @@ var PostsController={
                 "UPDATE cpsc304.PostedRealEstate SET listedPrice=?, postalCode=?, pictureURL=?, bedroom=?, bathroom=?, licenseNumber=? WHERE listingID=?"
         console.log('this is the post', Post.listedPrice);
         return con.query(updateSql, [Post.listedPrice, Post.postalCode, Post.pictureURL, Post.bedroom, Post.bathroom, Post.licenseNumber, Post.listingID], callback)
+    },
+    
+    // ISA relationship 
+    getAllHouses:function(callback){
+        return con.query("SELECT * FROM cpsc304.Houses", callback)
+    },
+
+    getAllApts:function(callback){
+        return con.query("SELECT * FROM cpsc304.Apartments", callback)
     }
 };
 module.exports=PostsController;
