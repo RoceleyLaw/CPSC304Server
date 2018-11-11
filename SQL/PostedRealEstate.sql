@@ -1,0 +1,10 @@
+insert into PostedRealEstate (listingID, listedPrice, postalCode, pictureURL, bedroom, bathroom, licenseNumber) values ('14311', 1519567, '31196', 'http://dummyimage.com/181x208.jpg/cc0000/ffffff', 8, 5, '9737702');
+insert into PostedRealEstate (listingID, listedPrice, postalCode, pictureURL, bedroom, bathroom, licenseNumber) values ('68717', 1607638, '01129', 'http://dummyimage.com/236x226.jpg/5fa2dd/ffffff', 6, 1, '9737702');
+insert into PostedRealEstate (listingID, listedPrice, postalCode, pictureURL, bedroom, bathroom, licenseNumber) values ('39720', 639430, '01129', 'http://dummyimage.com/165x107.jpg/5fa2dd/ffffff', 8, 1, '5571367');
+insert into PostedRealEstate (listingID, listedPrice, postalCode, pictureURL, bedroom, bathroom, licenseNumber) values ('70214', 2904593, '40546', 'http://dummyimage.com/233x123.jpg/5fa2dd/ffffff', 6, 5, '5189490');
+insert into PostedRealEstate (listingID, listedPrice, postalCode, pictureURL, bedroom, bathroom, licenseNumber) values ('91472', 2211837, '46239', 'http://dummyimage.com/133x114.jpg/ff4444/ffffff', 9, 3, '5189490');
+insert into PostedRealEstate (listingID, listedPrice, postalCode, pictureURL, bedroom, bathroom, licenseNumber) values ('57708', 923992, '64082', 'http://dummyimage.com/196x229.jpg/dddddd/000000', 3, 1, '2284578');
+insert into PostedRealEstate (listingID, listedPrice, postalCode, pictureURL, bedroom, bathroom, licenseNumber) values ('76424', 1448042, '22309', 'http://dummyimage.com/240x103.jpg/cc0000/ffffff', 6, 4, '5770319');
+insert into PostedRealEstate (listingID, listedPrice, postalCode, pictureURL, bedroom, bathroom, licenseNumber) values ('97220', 2563842, '02905', 'http://dummyimage.com/245x147.jpg/cc0000/ffffff', 1, 2, '5770319');
+insert into PostedRealEstate (listingID, listedPrice, postalCode, pictureURL, bedroom, bathroom, licenseNumber) values ('59727', 2090920, '60351', 'http://dummyimage.com/165x140.jpg/cc0000/ffffff', 7, 3, '5770319');
+insert into PostedRealEstate (listingID, listedPrice, postalCode, pictureURL, bedroom, bathroom, licenseNumber) values ('50406', 2144125, '44511', 'http://dummyimage.com/245x168.jpg/dddddd/000000', 7, 1, '5770319');

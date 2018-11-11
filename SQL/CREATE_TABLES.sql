@@ -1,6 +1,6 @@
 CREATE TABLE Realtors(
-licenseNumber INTEGER,
-phoneNumber INTEGER,
+licenseNumber CHAR(7),
+phoneNumber CHAR(10),
 email CHAR(30),
 name CHAR(30),
 PRIMARY KEY (licenseNumber),
@@ -16,14 +16,14 @@ PRIMARY KEY (postalCode)
 );
 
 CREATE TABLE TimePeriod(
-date INTEGER,
-endTime CHAR(5),
-startTime CHAR(5),
+date DATE,
+endTime TIME,
+startTime TIME,
 PRIMARY KEY (date, startTime, endTime)
 );
 
 CREATE TABLE Clients(
-phoneNumber INTEGER,
+phoneNumber CHAR(10),
 name CHAR(30),
 email CHAR(30),
 PRIMARY KEY (phoneNumber),
@@ -38,20 +38,20 @@ PRIMARY KEY (fID)
 );
 
 CREATE TABLE PostedRealEstate(
-listingID INTEGER,
+listingID CHAR(5),
 listedPrice INTEGER,
 postalCode CHAR(6) NOT NULL,
 pictureURL CHAR(100),
 bedroom INTEGER,
 bathroom INTEGER,
-licenseNumber INTEGER NOT NULL,
+licenseNumber CHAR(7) NOT NULL,
 PRIMARY KEY (listingID),
 FOREIGN KEY (postalCode) REFERENCES AddressDetails(postalCode) ON DELETE CASCADE ON UPDATE CASCADE,
 FOREIGN KEY (licenseNumber) REFERENCES Realtors(licenseNumber) ON UPDATE CASCADE
 );
 
 CREATE TABLE Houses(
-listingID INTEGER,
+listingID CHAR(5),
 houseNumber INTEGER,
 lotSize INTEGER,
 PRIMARY KEY (listingID),
@@ -59,7 +59,7 @@ FOREIGN KEY (listingID) REFERENCES PostedRealEstate(listingID) ON DELETE CASCADE
 );
 
 CREATE TABLE Apartments(
-listingID INTEGER,
+listingID CHAR(5),
 apartmentRoomNumber INTEGER,
 buildingNumber INTEGER,
 PRIMARY KEY (listingID),
@@ -67,13 +67,13 @@ FOREIGN KEY (listingID) REFERENCES PostedRealEstate(listingID) ON DELETE CASCADE
 );
 
 CREATE TABLE Appointments(
-appointmentID INTEGER,
-licenseNumber INTEGER NOT NULL,
+appointmentID CHAR(5),
+licenseNumber CHAR(7) NOT NULL,
 location CHAR(50),
-date INTEGER NOT NULL,
-startTime CHAR(5) NOT NULL,
-endTime CHAR(5) NOT NULL,
-phoneNumber INTEGER NOT NULL,
+date DATE NOT NULL,
+startTime TIME NOT NULL,
+endTime TIME NOT NULL,
+phoneNumber CHAR(10) NOT NULL,
 PRIMARY KEY (appointmentID),
 FOREIGN KEY (licenseNumber) REFERENCES Realtors(licenseNumber) ON UPDATE CASCADE ON DELETE CASCADE,
 FOREIGN KEY (phoneNumber) REFERENCES Clients(phoneNumber) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -81,13 +81,13 @@ FOREIGN KEY (date, startTime, endTime) REFERENCES TimePeriod(date, startTime, en
 );
 
 CREATE TABLE SoldListings(
-agreementNumber INTEGER,
+agreementNumber CHAR(5),
 finalPrice INTEGER,
-soldDate INTEGER,
-completionDate INTEGER,
-phoneNumber INTEGER NOT NULL,
-licenseNumber INTEGER NOT NULL,
-listingID INTEGER NOT NULL,
+soldDate DATE,
+completionDate DATE,
+phoneNumber CHAR(10) NOT NULL,
+licenseNumber CHAR(7) NOT NULL,
+listingID CHAR(5) NOT NULL,
 PRIMARY KEY (agreementNumber),
 UNIQUE(listingID),
 FOREIGN KEY (phoneNumber) REFERENCES Clients(phoneNumber) ON UPDATE CASCADE,
@@ -96,11 +96,11 @@ FOREIGN KEY (listingID) REFERENCES PostedRealEstate(listingID) ON UPDATE CASCADE
 );
 
 CREATE TABLE BookOpenHouseFor(
-listingID INTEGER,
-licenseNumber INTEGER,
-date INTEGER,
-startTime CHAR(5),
-endTime CHAR(5),
+listingID CHAR(5),
+licenseNumber CHAR(7),
+date DATE,
+startTime TIME,
+endTime TIME,
 PRIMARY KEY (listingID, licenseNumber, date, startTime, endTime),
 FOREIGN KEY (listingID) REFERENCES PostedRealEstate(listingID) ON UPDATE CASCADE ON DELETE CASCADE,
 FOREIGN KEY (licenseNumber) REFERENCES Realtors(licenseNumber) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -110,7 +110,7 @@ FOREIGN KEY (date, startTime, endTime) REFERENCES TimePeriod(date, startTime, en
 CREATE TABLE IsCloseBy(
 fID INTEGER,
 address CHAR(50),
-listingID INTEGER,
+listingID CHAR(5),
 PRIMARY KEY (fID, listingID),
 FOREIGN KEY (listingId) REFERENCES PostedRealEstate(listingId),
 FOREIGN KEY (fID) REFERENCES Facilities(fID)
