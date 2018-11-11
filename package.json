@@ -19,6 +19,7 @@
   "dependencies": {
     "body-parser": "",
     "bookshelf": "^0.13.3",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "knex": "^0.13.0",
     "mongoose": "",
