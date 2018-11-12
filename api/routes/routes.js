@@ -1,40 +1,14 @@
 'use strict';
 //export by default
-var task=require('../controllers/taskController');
 var posts=require('../controllers/postsController');
 var appointment=require('../controllers/appointmentController');
 
 module.exports = function (app) {
-    //get all persons at route baseURL/allpersons 
-    app.route('/allpersons')
-        .get(function (req, res, next) {
-            task.getAllPersons(function(err, result){
-                if (err){
-                    res.json(err);
-                } else {
-                    res.json(result);
-                }
-            });
-        });
     
-    // TODO: add routes
     app.route('/').get(function (req, res, next) {
         res.send('Welcome to the our API');
     });
 
-    app.route('/new').post(function(req,res,next) {
-        //res.send("hello world~");
-        //console.log("post received");
-        task.addNewPerson(req.body,function(err,count){
-          if (err) {
-            res.json(err);
-          } else {
-            res.json(req.body);//or return count for 1 &amp;amp;amp; 0
-            }
-          });
-         });
-
-    // ----------------- Every route below would be for our project -------------------------
     /**************************** PostedRealEstate *************************************/
     // GET REQ - get all posts in PostedRealEstate relation
     app.route('/allposts').get(function(req, res, next) {
@@ -96,7 +70,8 @@ module.exports = function (app) {
     
     /**************************** Houses *************************************/    
     // GET/POST REQ - get all posts that are houses/post a new house
-    app.route('/allHouses').get(function(req, res, next) {
+    app.route('/allHouses')
+    .get(function(req, res, next) {
         posts.getAllHouses(function(err, result){
             if (err){
                 res.json(err);
@@ -146,6 +121,7 @@ module.exports = function (app) {
             if (err) {
                 res.json(err);
             } else {
+                console.log(req.body);
                 res.json(req.body);
              }
          });
@@ -156,6 +132,43 @@ module.exports = function (app) {
                 res.json(err);
             } else {
                 res.json(result);
+             }
+         });
+       });
+    
+    // GET - get client appointments by phone number
+    app.route('/appointments/:clientPhone?')
+    .get(function(req, res, next) {
+        const id = req.params.clientPhone;
+        appointment.getAppointmentsbyClientPhone(id, function(err, result){
+            if (err){
+                res.json(err);
+            } else {
+                res.json(result);
+            }
+        });
+    })
+    
+    // Delete - delete appointment by id
+    // PUT - edit the appointment by id --- NOT DONE YET MIGHT NOT WORK NOW
+    app.route('/appointments/:appointmentID?')
+    .delete(function(req, res, next) {
+        const id = req.params.appointmentID;
+        appointment.deleteAppointmentbyID(id, function(err, result){
+            if (err){
+                res.json(err);
+            } else {
+                res.json(req.body);
+            }
+        });
+    })
+    .put(function(req, res, next){
+        const id = req.params.appointmentID;
+        posts.updatePostByID(id, req.body, function(err, count){
+            if (err) {
+                res.json(err);
+            } else {
+                res.json(req.body);
              }
          });
        });
