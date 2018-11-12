@@ -1,4 +1,6 @@
 var con=require('../../dbconnection'); //reference of dbconnection.js
+var RandomIDGenerator=require('../randomIDgenerator');
+//var randomID = RandomIDGenerator.getRandomID();
 var PostsController={
     //TODO: take SQL commands away from this file, isolate them into a new js file
     getAllPosts:function(callback){
@@ -6,8 +8,10 @@ var PostsController={
     },
 
     addNewPost:function(Post, callback){
-        console.log(Post);
-        return con.query("INSERT INTO cpsc304.PostedRealEstate(listingID, listedPrice, postalCode, pictureURL, bedroom, bathroom, licenseNumber) values (?,?,?,?,?,?,?)",[Post.listingID, Post.listedPrice, Post.postalCode, Post.pictureURL, Post.bedroom, Post.bathroom, Post.licenseNumber],callback);
+        const randomID = RandomIDGenerator.getRandomID();
+        console.log("Random ID assigned", randomID);
+        return con.query("INSERT INTO cpsc304.PostedRealEstate(listingID, listedPrice, postalCode, pictureURL, bedroom, bathroom, licenseNumber) values (?,?,?,?,?,?,?)",
+        [randomID, Post.listedPrice, Post.postalCode, Post.pictureURL, Post.bedroom, Post.bathroom, Post.licenseNumber],callback);
     },
 
     deletePost:function(id, callback){
@@ -15,7 +19,6 @@ var PostsController={
     },
 
     getPostbyID:function(id, callback){
-        console.log(id)
        return con.query("SELECT * FROM cpsc304.PostedRealEstate where listingID=?", [id], callback)
     },
 
@@ -39,18 +42,32 @@ var PostsController={
     },
 
     addNewHouse:function(House, callback){
+        //Q: is it a good way to send 2 queries at one req?
+        //Solution: enable multiple queries. It might cause security issues for production level application
+        //We want to insert the tuple into parent and child table as there is an ISA relationship btw 2 tables
         const insertSql =
                 "INSERT INTO cpsc304.PostedRealEstate(listingID, listedPrice, postalCode, pictureURL, bedroom, bathroom, licenseNumber)\
                  values (?,?,?,?,?,?,?);\
                  INSERT INTO cpsc304.Houses(listingID, houseNumber, lotSize)\
-                 values (?,?,?);"
-                
-        return con.query(insertSql,[House.listingID, House.listedPrice, House.postalCode, House.pictureURL, House.bedroom, House.bathroom, House.licenseNumber],callback);
+                 values (?,?,?);";
+        const randomID = RandomIDGenerator.getRandomID();
+        console.log("Random ID assigned", randomID);       
+        return con.query(insertSql,[randomID, House.listedPrice, House.postalCode, 
+            House.pictureURL, House.bedroom, House.bathroom, House.licenseNumber, 
+            randomID, House.houseNumber, House.lotSize],callback);
     },
 
     addNewApt:function(Apt, callback){
-        console.log(Post);
-        return con.query("INSERT INTO cpsc304.PostedRealEstate(listingID, listedPrice, postalCode, pictureURL, bedroom, bathroom, licenseNumber) values (?,?,?,?,?,?,?)",[Post.listingID, Post.listedPrice, Post.postalCode, Post.pictureURL, Post.bedroom, Post.bathroom, Post.licenseNumber],callback);
+        const insertSql =
+                "INSERT INTO cpsc304.PostedRealEstate(listingID, listedPrice, postalCode, pictureURL, bedroom, bathroom, licenseNumber)\
+                 values (?,?,?,?,?,?,?);\
+                 INSERT INTO cpsc304.Apartments(listingID, apartmentRoomNumber, buildingNumber)\
+                 values (?,?,?);";
+        const randomID = RandomIDGenerator.getRandomID();
+        console.log("Random ID assigned", randomID);      
+        return con.query(insertSql,[randomID, Apt.listedPrice, Apt.postalCode, 
+            Apt.pictureURL, Apt.bedroom, Apt.bathroom, Apt.licenseNumber, 
+            randomID, Apt.apartmentRoomNumber, Apt.buildingNumber],callback);
     }
 
 };

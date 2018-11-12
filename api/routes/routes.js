@@ -35,6 +35,7 @@ module.exports = function (app) {
          });
 
     // ----------------- Every route below would be for our project -------------------------
+    /**************************** PostedRealEstate *************************************/
     // GET REQ - get all posts in PostedRealEstate relation
     app.route('/allposts').get(function(req, res, next) {
         posts.getAllPosts(function(err, result){
@@ -70,7 +71,7 @@ module.exports = function (app) {
              }
          });
        })
-       .delete(function(req, res, next){
+       .delete(function(req, res, next){ // Only one delete is needed for parent table as it is CASCADE
            const id = req.params.listingID;
            //console.log('this is the id', id)
            posts.deletePost(id, function(err, count){
@@ -92,9 +93,53 @@ module.exports = function (app) {
             }
             });
         });
+    
+    /**************************** Houses *************************************/    
+    // GET/POST REQ - get all posts that are houses/post a new house
+    app.route('/allHouses').get(function(req, res, next) {
+        posts.getAllHouses(function(err, result){
+            if (err){
+                res.json(err);
+            } else {
+                res.json(result);
+            }
+        });
+    })
+    .post(function(req,res,next){
+        posts.addNewHouse(req.body,function(err,count){
+            if (err) {
+                res.json(err);
+            } else {
+                console.log(req.body);
+                res.json(req.body);
+            }
+        });
+    });
 
+    /**************************** Apartments *************************************/
+    // GET REQ - get all posts that are apartments
+    app.route('/allApts')
+    .get(function(req, res, next) {
+        posts.getAllApts(function(err, result){
+            if (err){
+                res.json(err);
+            } else {
+                res.json(result);
+            }
+        });
+    })
+    .post(function(req,res,next){
+        posts.addNewApt(req.body,function(err,count){
+            if (err) {
+                res.json(err);
+            } else {
+                console.log(req.body);
+                res.json(req.body);
+            }
+        });
+    });
 
-    // appointments
+    /**************************** Appointments *************************************/   
     app.route('/appointments')
        .post(function(req, res, next){
         appointment.addNewAppointment(req.body, function(err, count){

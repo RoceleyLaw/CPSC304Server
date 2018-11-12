@@ -31,14 +31,14 @@ UNIQUE (name, email)
 );
 
 CREATE TABLE Facilities(
-fID INTEGER,
+fid int AUTO_INCREMENT,
 address CHAR(50),
 type CHAR(30),
 PRIMARY KEY (fID)
 );
 
 CREATE TABLE PostedRealEstate(
-listingID CHAR(5),
+listingID int,
 listedPrice INTEGER,
 postalCode CHAR(6) NOT NULL,
 pictureURL CHAR(100),
@@ -51,7 +51,7 @@ FOREIGN KEY (licenseNumber) REFERENCES Realtors(licenseNumber) ON UPDATE CASCADE
 );
 
 CREATE TABLE Houses(
-listingID CHAR(5),
+listingID int,
 houseNumber INTEGER,
 lotSize INTEGER,
 PRIMARY KEY (listingID),
@@ -59,7 +59,7 @@ FOREIGN KEY (listingID) REFERENCES PostedRealEstate(listingID) ON DELETE CASCADE
 );
 
 CREATE TABLE Apartments(
-listingID CHAR(5),
+listingID int,
 apartmentRoomNumber INTEGER,
 buildingNumber INTEGER,
 PRIMARY KEY (listingID),
@@ -67,7 +67,7 @@ FOREIGN KEY (listingID) REFERENCES PostedRealEstate(listingID) ON DELETE CASCADE
 );
 
 CREATE TABLE Appointments(
-appointmentID CHAR(5),
+appointmentID int AUTO_INCREMENT,
 licenseNumber CHAR(7) NOT NULL,
 location CHAR(50),
 date DATE NOT NULL,
@@ -81,13 +81,13 @@ FOREIGN KEY (date, startTime, endTime) REFERENCES TimePeriod(date, startTime, en
 );
 
 CREATE TABLE SoldListings(
-agreementNumber CHAR(5),
+agreementNumber int AUTO_INCREMENT,
 finalPrice INTEGER,
 soldDate DATE,
 completionDate DATE,
 phoneNumber CHAR(10) NOT NULL,
 licenseNumber CHAR(7) NOT NULL,
-listingID CHAR(5) NOT NULL,
+listingID int NOT NULL,
 PRIMARY KEY (agreementNumber),
 UNIQUE(listingID),
 FOREIGN KEY (phoneNumber) REFERENCES Clients(phoneNumber) ON UPDATE CASCADE,
@@ -96,7 +96,7 @@ FOREIGN KEY (listingID) REFERENCES PostedRealEstate(listingID) ON UPDATE CASCADE
 );
 
 CREATE TABLE BookOpenHouseFor(
-listingID CHAR(5),
+listingID int,
 licenseNumber CHAR(7),
 date DATE,
 startTime TIME,
@@ -108,9 +108,9 @@ FOREIGN KEY (date, startTime, endTime) REFERENCES TimePeriod(date, startTime, en
 );
 
 CREATE TABLE IsCloseBy(
-fID INTEGER,
+fid int,
 address CHAR(50),
-listingID CHAR(5),
+listingID int,
 PRIMARY KEY (fID, listingID),
 FOREIGN KEY (listingId) REFERENCES PostedRealEstate(listingId),
 FOREIGN KEY (fID) REFERENCES Facilities(fID)
