@@ -195,6 +195,30 @@ module.exports = function (app) {
                 res.json(req.body);
              }
          });
+    });
+
+    // Delete - delete realtor by licenseNumber
+    // PUT - edit the realtor by licenseNumber
+    app.route('/allRealtors/:licenseNumber?')
+    .delete(function(req, res, next) {
+        const id = req.params.licenseNumber;
+        appointment.deleteRealtorbyID(id, function(err, result){
+            if (err){
+                res.json(err);
+            } else {
+                res.json(req.body);
+            }
+        });
+    })
+    .put(function(req, res, next){
+        const id = req.params.licenseNumber;
+        posts.updateRealtorbyID(id, req.body, function(err, count){
+            if (err) {
+                res.json(err);
+            } else {
+                res.json(req.body);
+             }
+         });
        });
     
     /**************************** Clients *************************************/
@@ -214,6 +238,30 @@ module.exports = function (app) {
                 res.json(err);
             } else {
                 console.log(req.body);
+                res.json(req.body);
+             }
+         });
+       });
+
+    // Delete - delete client by phoneNumber
+    // PUT - edit the client by phoneNumber
+    app.route('/allClients/:phoneNumber?')
+    .delete(function(req, res, next) {
+        const id = req.params.licenseNumber;
+        client.deleteClientbyID(id, function(err, result){
+            if (err){
+                res.json(err);
+            } else {
+                res.json(req.body);
+            }
+        });
+    })
+    .put(function(req, res, next){
+        const id = req.params.licenseNumber;
+        posts.updateClientbyID(id, req.body, function(err, count){
+            if (err) {
+                res.json(err);
+            } else {
                 res.json(req.body);
              }
          });

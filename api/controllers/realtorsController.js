@@ -12,9 +12,9 @@ var RealtorsController={
                 [realtor.licenseNumber, realtor.phoneNumber, realtor.realtorEmail, realtor.realtorName],callback);
     },
 
-    // deleteAppointmentbyID:function(id, callback){
-    //     return con.query("DELETE FROM cpsc304.Appointments WHERE appointmentID=?", [id], callback)
-    //  },
+    deleteRealtorbyID:function(id, callback){
+        return con.query("DELETE FROM cpsc304.Realtors WHERE licenseNumber=?", [id], callback)
+     },
 
     // getAppointmentsbyClientPhone:function(id, callback){
     //    console.log(id)
@@ -23,14 +23,14 @@ var RealtorsController={
     //                      AND cpsc304.Appointments.phoneNumber=?", [id], callback)
     // },
 
-    // updateAppointmentsByID:function(id, appointment, callback){
-    //     const updateSql =
-    //             "UPDATE cpsc304.Appointments\
-    //              SET licenseNumber=?, location=?, date=?, startTime=?, endTime=?, phoneNumber=?\
-    //              WHERE appointmentID=?"
-    //     console.log('this is the appointment', appointment);
-    //     return con.query(updateSql, [appointment.licenseNumber, appointment.location, 
-    //         appointment.date, appointment.startTime, appointment.endTime, appointment.phoneNumber, id], callback)
-    // }
+    updateRealtorByID:function(id, realtor, callback){
+        const updateSql =
+                "UPDATE cpsc304.Realtors\
+                 SET licenseNumber=?, phoneNumber=?, realtorEmail=?, realtorName=?\
+                 WHERE licenseNumber=?"
+        console.log('this is the updated realtor', appointment);
+        return con.query(updateSql, [realtor.licenseNumber, realtor.phoneNumber, 
+            realtor.realtorEmail, realtor.realtorName, id], callback)
+    }
 };
 module.exports=RealtorsController;

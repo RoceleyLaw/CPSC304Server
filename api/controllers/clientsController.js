@@ -12,9 +12,9 @@ var ClientsController={
                 [client.phoneNumber, client.clientName, client.clientEmail],callback);
     },
 
-    // deleteAppointmentbyID:function(id, callback){
-    //     return con.query("DELETE FROM cpsc304.Appointments WHERE appointmentID=?", [id], callback)
-    //  },
+    deleteClientbyID:function(id, callback){
+        return con.query("DELETE FROM cpsc304.Clients WHERE phoneNumber=?", [id], callback)
+     },
 
     // getAppointmentsbyClientPhone:function(id, callback){
     //    console.log(id)
@@ -23,14 +23,14 @@ var ClientsController={
     //                      AND cpsc304.Appointments.phoneNumber=?", [id], callback)
     // },
 
-    // updateAppointmentsByID:function(id, appointment, callback){
-    //     const updateSql =
-    //             "UPDATE cpsc304.Appointments\
-    //              SET licenseNumber=?, location=?, date=?, startTime=?, endTime=?, phoneNumber=?\
-    //              WHERE appointmentID=?"
-    //     console.log('this is the appointment', appointment);
-    //     return con.query(updateSql, [appointment.licenseNumber, appointment.location, 
-    //         appointment.date, appointment.startTime, appointment.endTime, appointment.phoneNumber, id], callback)
-    // }
+    updateClientByID:function(id, client, callback){
+        const updateSql =
+                "UPDATE cpsc304.Clients\
+                 SET phoneNumber=?, clientName=?, clientEmail=?\
+                 WHERE phoneNumber=?"
+        console.log('updatedClient:', client);
+        return con.query(updateSql, [client.phoneNumber, client.clientName, 
+            client.clientEmail, id], callback)
+    }
 };
 module.exports=ClientsController;
