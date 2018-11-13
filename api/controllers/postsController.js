@@ -34,13 +34,15 @@ var PostsController={
     
     // ISA relationship 
     getAllHouses:function(callback){
-        return con.query("SELECT * FROM cpsc304.Houses, cpsc304.PostedRealEstate\
-                          WHERE cpsc304.Houses.listingID = cpsc304.PostedRealEstate.listingID", callback)
+        return con.query("SELECT * FROM cpsc304.Houses, cpsc304.PostedRealEstate, cpsc304.AddressDetails\
+                          WHERE cpsc304.Houses.listingID = cpsc304.PostedRealEstate.listingID\
+                                AND cpsc304.PostedRealEstate.postalCode = cpsc304.AddressDetails.postalCode", callback)
     },
 
     getAllApts:function(callback){
-        return con.query("SELECT * FROM cpsc304.Apartments, cpsc304.PostedRealEstate\
-                          WHERE cpsc304.Apartments.listingID = cpsc304.PostedRealEstate.listingID", callback)
+        return con.query("SELECT * FROM cpsc304.Apartments, cpsc304.PostedRealEstate, cpsc304.AddressDetails\
+                          WHERE cpsc304.Apartments.listingID = cpsc304.PostedRealEstate.listingID\
+                                AND cpsc304.PostedRealEstate.postalCode = cpsc304.AddressDetails.postalCode", callback)
     },
 
     addNewHouse:function(House, callback){
