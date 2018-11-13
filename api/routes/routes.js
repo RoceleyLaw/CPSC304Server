@@ -165,7 +165,7 @@ module.exports = function (app) {
     })
     .put(function(req, res, next){
         const id = req.params.appointmentID;
-        posts.updatePostByID(id, req.body, function(err, count){
+        appointment.updatePostByID(id, req.body, function(err, count){
             if (err) {
                 res.json(err);
             } else {
@@ -187,7 +187,7 @@ module.exports = function (app) {
         });
     })
     .post(function(req, res, next){
-        appointment.addNewRealtor(req.body, function(err, count){
+        realtors.addNewRealtor(req.body, function(err, count){
             if (err) {
                 res.json(err);
             } else {
@@ -202,7 +202,7 @@ module.exports = function (app) {
     app.route('/allRealtors/:licenseNumber?')
     .delete(function(req, res, next) {
         const id = req.params.licenseNumber;
-        appointment.deleteRealtorbyID(id, function(err, result){
+        realtors.deleteRealtorbyID(id, function(err, result){
             if (err){
                 res.json(err);
             } else {
@@ -212,7 +212,7 @@ module.exports = function (app) {
     })
     .put(function(req, res, next){
         const id = req.params.licenseNumber;
-        posts.updateRealtorbyID(id, req.body, function(err, count){
+        realtors.updateRealtorbyID(id, req.body, function(err, count){
             if (err) {
                 res.json(err);
             } else {
@@ -233,7 +233,7 @@ module.exports = function (app) {
         });
     })
     .post(function(req, res, next){
-        appointment.addNewClient(req.body, function(err, count){
+        clients.addNewClient(req.body, function(err, count){
             if (err) {
                 res.json(err);
             } else {
@@ -247,8 +247,8 @@ module.exports = function (app) {
     // PUT - edit the client by phoneNumber
     app.route('/allClients/:phoneNumber?')
     .delete(function(req, res, next) {
-        const id = req.params.licenseNumber;
-        client.deleteClientbyID(id, function(err, result){
+        const id = req.params.phoneNumber;
+        clients.deleteClientbyID(id, function(err, result){
             if (err){
                 res.json(err);
             } else {
@@ -257,13 +257,23 @@ module.exports = function (app) {
         });
     })
     .put(function(req, res, next){
-        const id = req.params.licenseNumber;
-        posts.updateClientbyID(id, req.body, function(err, count){
+        const id = req.params.phoneNumber;
+        clients.updateClientbyID(id, req.body, function(err, count){
             if (err) {
                 res.json(err);
             } else {
                 res.json(req.body);
              }
          });
-       });
+    })
+    .get(function(req, res, next) {
+        const id = req.params.phoneNumber;
+        clients.getClientbyID(id, function(err, result){
+        if (err){
+            res.json(err);
+        } else {
+            res.json(result);
+        }
+        });
+    });;
 }

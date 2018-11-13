@@ -8,6 +8,12 @@ var PostsController={
                           WHERE cpsc304.PostedRealEstate.postalCode = cpsc304.AddressDetails.postalCode", callback)
     },
 
+    getAllUnsoldPosts:function(callback){
+        return con.query("SELECT * FROM cpsc304.PostedRealEstate, cpsc304.AddressDetails, cpsc304.SoldListings\
+                          WHERE cpsc304.PostedRealEstate.postalCode = cpsc304.AddressDetails.postalCode\
+                                cpsc304.PostedRealEstate.listingID = cpsc304.SoldListings.listingID", callback)
+    },
+
     addNewPost:function(Post, callback){
         const randomID = RandomIDGenerator.getRandomID();
         console.log("Random ID assigned", randomID);

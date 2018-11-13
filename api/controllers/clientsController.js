@@ -5,7 +5,7 @@ var ClientsController={
         return con.query("SELECT * FROM cpsc304.Clients", callback)
     },
 
-    addNewaddNewClient:function(client, callback){
+    addNewClient:function(client, callback){
         // The array has only one value;
         console.log('client:',client);
         return con.query("INSERT INTO cpsc304.Clients(phoneNumber, clientName, clientEmail) values (?,?,?)",
@@ -16,12 +16,10 @@ var ClientsController={
         return con.query("DELETE FROM cpsc304.Clients WHERE phoneNumber=?", [id], callback)
      },
 
-    // getAppointmentsbyClientPhone:function(id, callback){
-    //    console.log(id)
-    //    return con.query("SELECT * FROM cpsc304.Appointments, cpsc304.Realtors\
-    //                      WHERE cpsc304.Appointments.licenseNumber=cpsc304.Realtors.licenseNumber\
-    //                      AND cpsc304.Appointments.phoneNumber=?", [id], callback)
-    // },
+    getClientbyID:function(id, callback){
+       console.log(id)
+       return con.query("SELECT * FROM cpsc304.Clients WHERE phoneNumber=?", [id], callback)
+    },
 
     updateClientByID:function(id, client, callback){
         const updateSql =
