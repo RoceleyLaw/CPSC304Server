@@ -186,6 +186,16 @@ module.exports = function (app) {
             }
         });
     })
+    .post(function(req, res, next){
+        appointment.addNewRealtor(req.body, function(err, count){
+            if (err) {
+                res.json(err);
+            } else {
+                console.log(req.body);
+                res.json(req.body);
+             }
+         });
+       });
     
     /**************************** Clients *************************************/
     app.route('/allClients')
@@ -198,4 +208,14 @@ module.exports = function (app) {
             }
         });
     })
+    .post(function(req, res, next){
+        appointment.addNewClient(req.body, function(err, count){
+            if (err) {
+                res.json(err);
+            } else {
+                console.log(req.body);
+                res.json(req.body);
+             }
+         });
+       });
 }

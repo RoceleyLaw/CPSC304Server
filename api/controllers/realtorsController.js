@@ -5,12 +5,12 @@ var RealtorsController={
         return con.query("SELECT * FROM cpsc304.Realtors", callback)
     },
 
-    // addNewAppointment:function(appointment, callback){
-    //     // The array has only one value;
-    //     console.log('LICENSE',appointment);
-    //     return con.query("INSERT INTO cpsc304.Appointments(appointmentID, licenseNumber, location, date, startTime, endTime, phoneNumber) values (?,?,?,?,?,?,?)",
-    //             [null, appointment.licenseNumber, appointment.location, appointment.date, appointment.startTime, appointment.endTime, appointment.phoneNumber],callback);
-    // },
+    addNewRealtor:function(realtor, callback){
+        // The array has only one value;
+        console.log('Realtor:',realtor);
+        return con.query("INSERT INTO cpsc304.Realtors(licenseNumber, phoneNumber, realtorEmail, realtorName) values (?,?,?,?,?)",
+                [realtor.licenseNumber, realtor.phoneNumber, realtor.realtorEmail, realtor.realtorName],callback);
+    },
 
     // deleteAppointmentbyID:function(id, callback){
     //     return con.query("DELETE FROM cpsc304.Appointments WHERE appointmentID=?", [id], callback)

@@ -5,12 +5,12 @@ var ClientsController={
         return con.query("SELECT * FROM cpsc304.Clients", callback)
     },
 
-    // addNewAppointment:function(appointment, callback){
-    //     // The array has only one value;
-    //     console.log('LICENSE',appointment);
-    //     return con.query("INSERT INTO cpsc304.Appointments(appointmentID, licenseNumber, location, date, startTime, endTime, phoneNumber) values (?,?,?,?,?,?,?)",
-    //             [null, appointment.licenseNumber, appointment.location, appointment.date, appointment.startTime, appointment.endTime, appointment.phoneNumber],callback);
-    // },
+    addNewaddNewClient:function(client, callback){
+        // The array has only one value;
+        console.log('client:',client);
+        return con.query("INSERT INTO cpsc304.Clients(phoneNumber, clientName, clientEmail) values (?,?,?)",
+                [client.phoneNumber, client.clientName, client.clientEmail],callback);
+    },
 
     // deleteAppointmentbyID:function(id, callback){
     //     return con.query("DELETE FROM cpsc304.Appointments WHERE appointmentID=?", [id], callback)
