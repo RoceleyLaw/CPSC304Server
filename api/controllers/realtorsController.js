@@ -8,7 +8,7 @@ var RealtorsController={
     addNewRealtor:function(realtor, callback){
         // The array has only one value;
         console.log('Realtor:',realtor);
-        return con.query("INSERT INTO cpsc304.Realtors(licenseNumber, phoneNumber, realtorEmail, realtorName) values (?,?,?,?,?)",
+        return con.query("INSERT INTO cpsc304.Realtors(licenseNumber, phoneNumber, realtorEmail, realtorName) values (?,?,?,?)",
                 [realtor.licenseNumber, realtor.phoneNumber, realtor.realtorEmail, realtor.realtorName],callback);
     },
 
