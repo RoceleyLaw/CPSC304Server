@@ -2,7 +2,8 @@
 //export by default
 var posts=require('../controllers/postsController');
 var appointment=require('../controllers/appointmentController');
-
+var realtors=require('../controllers/realtorsController');
+var clients=require('../controllers/clientsController');
 module.exports = function (app) {
     
     app.route('/').get(function (req, res, next) {
@@ -172,4 +173,29 @@ module.exports = function (app) {
              }
          });
        });
+    
+    /**************************** Realtors *************************************/ 
+    // GET - get all realtors
+    app.route('/allRealtors')
+    .get(function(req, res, next) {
+        realtors.getAllRealtors(function(err, result){
+            if (err){
+                res.json(err);
+            } else {
+                res.json(result);
+            }
+        });
+    })
+    
+    /**************************** Clients *************************************/
+    app.route('/allClients')
+    .get(function(req, res, next) {
+        clients.getAllClients(function(err, result){
+            if (err){
+                res.json(err);
+            } else {
+                res.json(result);
+            }
+        });
+    })
 }
