@@ -4,7 +4,8 @@ var RandomIDGenerator=require('../randomIDgenerator');
 var PostsController={
     //TODO: take SQL commands away from this file, isolate them into a new js file
     getAllPosts:function(callback){
-        return con.query("SELECT * FROM cpsc304.PostedRealEstate", callback)
+        return con.query("SELECT * FROM cpsc304.PostedRealEstate, cpsc304.AddressDetails\
+                          WHERE cpsc304.PostedRealEstate.postalCode = cpsc304.AddressDetails.postalCode", callback)
     },
 
     addNewPost:function(Post, callback){
