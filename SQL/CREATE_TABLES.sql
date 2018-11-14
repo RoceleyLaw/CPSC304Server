@@ -115,3 +115,6 @@ PRIMARY KEY (fID, listingID),
 FOREIGN KEY (listingId) REFERENCES PostedRealEstate(listingId),
 FOREIGN KEY (fID) REFERENCES Facilities(fID)
 );
+
+ALTER TABLE Realtors
+ADD CHECK (LENGTH(licenseNumber) = 7);

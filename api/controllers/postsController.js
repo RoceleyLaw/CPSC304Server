@@ -4,14 +4,14 @@ var RandomIDGenerator=require('../randomIDgenerator');
 var PostsController={
     //TODO: take SQL commands away from this file, isolate them into a new js file
     getAllPosts:function(callback){
-        return con.query("SELECT * FROM cpsc304.PostedRealEstate, cpsc304.AddressDetails\
-                          WHERE cpsc304.PostedRealEstate.postalCode = cpsc304.AddressDetails.postalCode", callback)
+        return con.query("SELECT * FROM cpsc304.Posts", callback)
     },
 
+    // NESTED Query
     getAllUnsoldPosts:function(callback){
-        return con.query("SELECT * FROM cpsc304.PostedRealEstate\
-                          WHERE cpsc304.PostedRealEstate.listingID\
-                          NOT IN (SELECT cpsc304.SoldListings.listingID FROM cpsc304.PostedRealEstate, cpsc304.SoldListings WHERE cpsc304.PostedRealEstate.listingID = cpsc304.SoldListings.listingID)", callback);
+        return con.query("SELECT * FROM cpsc304.Posts\
+                          WHERE cpsc304.Posts.listingID\
+                          NOT IN (SELECT cpsc304.SoldListings.listingID FROM cpsc304.Posts, cpsc304.SoldListings WHERE cpsc304.Posts.listingID = cpsc304.SoldListings.listingID)", callback);
     },
 
     addNewPost:function(Post, callback){
@@ -26,7 +26,8 @@ var PostsController={
     },
 
     getPostbyID:function(id, callback){
-       return con.query("SELECT * FROM cpsc304.PostedRealEstate where listingID=?", [id], callback)
+       return con.query("SELECT * FROM cpsc304.Posts\
+                         WHERE listingID=?", [id], callback)
     },
 
     updatePostByID:function(id, newPost, callback){
@@ -41,15 +42,13 @@ var PostsController={
     
     // ISA relationship 
     getAllHouses:function(callback){
-        return con.query("SELECT * FROM cpsc304.Houses, cpsc304.PostedRealEstate, cpsc304.AddressDetails\
-                          WHERE cpsc304.Houses.listingID = cpsc304.PostedRealEstate.listingID\
-                                AND cpsc304.PostedRealEstate.postalCode = cpsc304.AddressDetails.postalCode", callback)
+        return con.query("SELECT * FROM cpsc304.Houses, cpsc304.Posts\
+                          WHERE cpsc304.Houses.listingID = cpsc304.Posts.listingID", callback)
     },
 
     getAllApts:function(callback){
-        return con.query("SELECT * FROM cpsc304.Apartments, cpsc304.PostedRealEstate, cpsc304.AddressDetails\
-                          WHERE cpsc304.Apartments.listingID = cpsc304.PostedRealEstate.listingID\
-                                AND cpsc304.PostedRealEstate.postalCode = cpsc304.AddressDetails.postalCode", callback)
+        return con.query("SELECT * FROM cpsc304.Apartments, cpsc304.Posts\
+                          WHERE cpsc304.Apartments.listingID = cpsc304.Posts.listingID", callback)
     },
 
     addNewHouse:function(House, callback){
