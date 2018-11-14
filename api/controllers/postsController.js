@@ -9,9 +9,9 @@ var PostsController={
     },
 
     getAllUnsoldPosts:function(callback){
-        return con.query("SELECT * FROM cpsc304.PostedRealEstate, cpsc304.AddressDetails, cpsc304.SoldListings\
-                          WHERE cpsc304.PostedRealEstate.postalCode = cpsc304.AddressDetails.postalCode\
-                                cpsc304.PostedRealEstate.listingID = cpsc304.SoldListings.listingID", callback)
+        return con.query("SELECT * FROM cpsc304.PostedRealEstate\
+                          WHERE cpsc304.PostedRealEstate.listingID\
+                          NOT IN (SELECT cpsc304.SoldListings.listingID FROM cpsc304.PostedRealEstate, cpsc304.SoldListings WHERE cpsc304.PostedRealEstate.listingID = cpsc304.SoldListings.listingID)", callback);
     },
 
     addNewPost:function(Post, callback){

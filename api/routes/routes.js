@@ -4,6 +4,8 @@ var posts=require('../controllers/postsController');
 var appointment=require('../controllers/appointmentController');
 var realtors=require('../controllers/realtorsController');
 var clients=require('../controllers/clientsController');
+var soldListings=require('../controllers/soldListingsController');
+
 module.exports = function (app) {
     
     app.route('/').get(function (req, res, next) {
@@ -14,6 +16,16 @@ module.exports = function (app) {
     // GET REQ - get all posts in PostedRealEstate relation
     app.route('/allposts').get(function(req, res, next) {
         posts.getAllPosts(function(err, result){
+            if (err){
+                res.json(err);
+            } else {
+                res.json(result);
+            }
+        });
+    });
+
+    app.route('/allUnsoldPosts').get(function(req, res, next) {
+        posts.getAllUnsoldPosts(function(err, result){
             if (err){
                 res.json(err);
             } else {
@@ -212,14 +224,24 @@ module.exports = function (app) {
     })
     .put(function(req, res, next){
         const id = req.params.licenseNumber;
-        realtors.updateRealtorbyID(id, req.body, function(err, count){
+        realtors.updateRealtorByID(id, req.body, function(err, count){
             if (err) {
                 res.json(err);
             } else {
                 res.json(req.body);
              }
          });
-       });
+    })
+    .get(function(req, res, next) {
+        const id = req.params.licenseNumber;
+        realtors.getRealtorByID(id, function(err, result){
+        if (err){
+            res.json(err);
+        } else {
+            res.json(result);
+        }
+        });
+    });
     
     /**************************** Clients *************************************/
     app.route('/allClients')
@@ -275,5 +297,27 @@ module.exports = function (app) {
             res.json(result);
         }
         });
-    });;
+    });
+
+ /**************************** SoldListings *************************************/
+    app.route('/soldListings')
+    .get(function(req, res, next) {
+        soldListings.getSoldListings(function(err, result){
+            if (err){
+                res.json(err);
+            } else {
+                res.json(result);
+            }
+        });
+    })
+    .post(function(req, res, next){
+        soldListings.addNewSold(req.body, function(err, count){
+            if (err) {
+                res.json(err);
+            } else {
+                console.log(req.body);
+                res.json(req.body);
+             }
+         });
+       });
 }

@@ -16,19 +16,17 @@ var RealtorsController={
         return con.query("DELETE FROM cpsc304.Realtors WHERE licenseNumber=?", [id], callback)
      },
 
-    // getAppointmentsbyClientPhone:function(id, callback){
-    //    console.log(id)
-    //    return con.query("SELECT * FROM cpsc304.Appointments, cpsc304.Realtors\
-    //                      WHERE cpsc304.Appointments.licenseNumber=cpsc304.Realtors.licenseNumber\
-    //                      AND cpsc304.Appointments.phoneNumber=?", [id], callback)
-    // },
+    getRealtorByID:function(id, callback){
+       console.log(id)
+       return con.query("SELECT * FROM cpsc304.Realtors WHERE licenseNumber=?", [id], callback)
+    },
 
     updateRealtorByID:function(id, realtor, callback){
         const updateSql =
                 "UPDATE cpsc304.Realtors\
                  SET licenseNumber=?, phoneNumber=?, realtorEmail=?, realtorName=?\
                  WHERE licenseNumber=?"
-        console.log('this is the updated realtor', appointment);
+        console.log('this is the updated realtor', realtor);
         return con.query(updateSql, [realtor.licenseNumber, realtor.phoneNumber, 
             realtor.realtorEmail, realtor.realtorName, id], callback)
     }
