@@ -280,7 +280,7 @@ module.exports = function (app) {
     })
     .put(function(req, res, next){
         const id = req.params.phoneNumber;
-        clients.updateClientbyID(id, req.body, function(err, count){
+        clients.updateClientByID(id, req.body, function(err, count){
             if (err) {
                 res.json(err);
             } else {
