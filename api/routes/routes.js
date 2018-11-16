@@ -5,6 +5,7 @@ var appointment=require('../controllers/appointmentController');
 var realtors=require('../controllers/realtorsController');
 var clients=require('../controllers/clientsController');
 var soldListings=require('../controllers/soldListingsController');
+var addressDetails=require('../controllers/addressDetailsController');
 
 module.exports = function (app) {
     
@@ -325,6 +326,28 @@ module.exports = function (app) {
     })
     .post(function(req, res, next){
         soldListings.addNewSold(req.body, function(err, count){
+            if (err) {
+                res.json(err);
+            } else {
+                console.log(req.body);
+                res.json(req.body);
+             }
+         });
+       });
+  
+ /**************************** AddressDetails *************************************/
+ app.route('/postalcodes')
+    .get(function(req, res, next) {
+        addressDetails.getAllPostalCodes(function(err, result){
+            if (err){
+                res.json(err);
+            } else {
+                res.json(result);
+            }
+        });
+    })
+    .post(function(req, res, next){
+        addressDetails.addNewPostalCode(req.body, function(err, count){
             if (err) {
                 res.json(err);
             } else {
