@@ -14,6 +14,10 @@ var FacilitiesController={
        console.log(id);
        return con.query("SELECT * FROM cpsc304.CloseByFacilities\
                          WHERE cpsc304.CloseByFacilities.listingID=?", [id], callback)
-    }
+    },
+
+    getFacilitiesTypes:function(callback){
+        return con.query("SELECT DISTINCT type FROM cpsc304.Facilities", callback)
+     }
 };
 module.exports=FacilitiesController;

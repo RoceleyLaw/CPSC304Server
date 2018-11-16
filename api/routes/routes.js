@@ -383,4 +383,16 @@ app.route('/facilities')
         }
     });
 })
+
+app.route('/facilityTypes')
+.get(function(req, res, next) {
+    facilities.getFacilitiesTypes(function(err, result){
+        if (err){
+            res.json(err);
+        } else {
+            res.json(result);
+        }
+    });
+})
+
 }
