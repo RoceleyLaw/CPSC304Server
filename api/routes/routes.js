@@ -82,6 +82,30 @@ module.exports = function (app) {
             });
         });
     
+    /**************************** SoldListings *************************************/
+    app.route('/soldlistings/:realtorid?')
+    .get(function(req, res, next) {
+        const id = req.params.realtorid;
+        soldListings.getSoldListingsByRealtorID(id, function(err, result){
+            if (err){
+                res.json(err);
+            } else {
+                res.json(result);
+            }
+        });
+    })
+
+    app.route('/soldlistings')
+    .post(function(req,res,next){
+        soldListings.addNewSold(req.body,function(err,count){
+            if (err) {
+                res.json(err);
+            } else {
+                console.log(req.body);
+                res.json(req.body);
+            }
+        });
+    });;
     /**************************** Houses *************************************/    
     // GET/POST REQ - get all posts that are houses/post a new house
     app.route('/allHouses')
@@ -312,28 +336,6 @@ module.exports = function (app) {
         }
         });
     });
-
- /**************************** SoldListings *************************************/
-    app.route('/soldListings')
-    .get(function(req, res, next) {
-        soldListings.getSoldListings(function(err, result){
-            if (err){
-                res.json(err);
-            } else {
-                res.json(result);
-            }
-        });
-    })
-    .post(function(req, res, next){
-        soldListings.addNewSold(req.body, function(err, count){
-            if (err) {
-                res.json(err);
-            } else {
-                console.log(req.body);
-                res.json(req.body);
-             }
-         });
-       });
   
  /**************************** AddressDetails *************************************/
  app.route('/postalcodes')
