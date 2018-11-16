@@ -6,10 +6,13 @@ var AppointmentController={
     },
 
     addNewAppointment:function(appointment, callback){
-        // The array has only one value;
-        console.log('LICENSE',appointment);
-        return con.query("INSERT INTO cpsc304.Appointments(appointmentID, licenseNumber, location, date, startTime, endTime, phoneNumber) values (?,?,?,?,?,?,?)",
-                [null, appointment.licenseNumber, appointment.location, appointment.date, appointment.startTime, appointment.endTime, appointment.phoneNumber],callback);
+        // /appointments route is shared by post and get
+        console.log('appointment',appointment);
+        return con.query("INSERT INTO cpsc304.TimePeriod(date, startTime, endTime) values (?,?,?);\
+                          INSERT INTO cpsc304.Appointments(appointmentID, licenseNumber, location, date, startTime, endTime, phoneNumber) values (?,?,?,?,?,?,?);",
+                [appointment.date, appointment.startTime, appointment.endTime,
+                    null, appointment.licenseNumber, appointment.location, appointment.date, appointment.startTime, appointment.endTime, appointment.phoneNumber,
+                    ],callback);
     },
 
     deleteAppointmentbyID:function(id, callback){
