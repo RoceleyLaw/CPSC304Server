@@ -1,0 +1,10 @@
+insert into IsCloseBy (fid, listingID) values (1, '823 Bonner Avenue');
+insert into IsCloseBy (fid, listingID) values (2, '30 Mitchell Terrace');
+insert into IsCloseBy (fid, listingID) values (3, '681 Commercial Plaza');
+insert into IsCloseBy (fid, listingID) values (4, '066 Talmadge Junction');
+insert into IsCloseBy (fid, listingID) values (5, '04 Ridgeview Place');
+insert into IsCloseBy (fid, listingID) values (6, '27461 Springview Center');
+insert into IsCloseBy (fid, listingID) values (7, '33 West Avenue');
+insert into IsCloseBy (fid, listingID) values (8, '36317 Drewry Lane');
+insert into IsCloseBy (fid, listingID) values (9, '6 Maryland Place');
+insert into IsCloseBy (fid, listingID) values (10, '211 Cottonwood Hill');

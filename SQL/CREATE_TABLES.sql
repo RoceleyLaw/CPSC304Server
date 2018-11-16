@@ -118,3 +118,6 @@ FOREIGN KEY (fID) REFERENCES Facilities(fID)
 
 ALTER TABLE Realtors
 ADD CHECK (LENGTH(licenseNumber) = 7);
+
+ALTER TABLE IsCloseBy
+DROP COLUMN address;

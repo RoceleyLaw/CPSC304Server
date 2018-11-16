@@ -6,6 +6,7 @@ var realtors=require('../controllers/realtorsController');
 var clients=require('../controllers/clientsController');
 var soldListings=require('../controllers/soldListingsController');
 var addressDetails=require('../controllers/addressDetailsController');
+var facilities=require('../controllers/facilitiesController');
 
 module.exports = function (app) {
     
@@ -357,5 +358,29 @@ module.exports = function (app) {
                 res.json(req.body);
              }
          });
-       });
+    });
+
+ /**************************** Facilities *************************************/
+ app.route('/closebyfacilities/:listingid?')
+ .get(function(req, res, next) {
+    const id = req.params.listingid;
+    facilities.getFacilitiesCloseByListingID(id, function(err, result){
+    if (err){
+        res.json(err);
+    } else {
+        res.json(result);
+    }
+    });
+})
+
+app.route('/facilities')
+.get(function(req, res, next) {
+    facilities.getAllFacilities(function(err, result){
+        if (err){
+            res.json(err);
+        } else {
+            res.json(result);
+        }
+    });
+})
 }
