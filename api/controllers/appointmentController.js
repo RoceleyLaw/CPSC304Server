@@ -26,6 +26,13 @@ var AppointmentController={
                          AND cpsc304.Appointments.phoneNumber=?", [id], callback)
     },
 
+    getAppointmentsbyRealtorID:function(id, callback){
+        console.log("license number:", id);
+        return con.query("SELECT * FROM cpsc304.Appointments, cpsc304.Clients\
+                          WHERE cpsc304.Appointments.phoneNumber=cpsc304.Clients.phoneNumber\
+                          AND cpsc304.Appointments.licenseNumber=?", [id], callback)
+     },
+
     updateAppointmentsByID:function(id, appointment, callback){
         const updateSql =
                 "UPDATE cpsc304.Appointments\

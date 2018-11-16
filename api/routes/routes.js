@@ -161,6 +161,19 @@ module.exports = function (app) {
             }
         });
     })
+
+    // GET - get client appointments by realtorid
+    app.route('/appointments/byrealtor/:realtorid?')
+    .get(function(req, res, next) {
+        const id = req.params.realtorid;
+        appointment.getAppointmentsbyRealtorID(id, function(err, result){
+            if (err){
+                res.json(err);
+            } else {     
+                res.json(result);
+            }
+        });
+    })
     
     // Delete - delete appointment by id
     // PUT - edit the appointment by id --- NOT DONE YET MIGHT NOT WORK NOW
