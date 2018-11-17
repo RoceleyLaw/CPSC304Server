@@ -36,11 +36,11 @@ var AppointmentController={
     updateAppointmentsByID:function(id, appointment, callback){
         const updateSql =
                 "UPDATE cpsc304.Appointments\
-                 SET licenseNumber=?, location=?, date=?, startTime=?, endTime=?, phoneNumber=?\
+                 SET location=?, date=?, startTime=?, endTime=?\
                  WHERE appointmentID=?"
         console.log('this is the appointment', appointment);
-        return con.query(updateSql, [appointment.licenseNumber, appointment.location, 
-            appointment.date, appointment.startTime, appointment.endTime, appointment.phoneNumber, id], callback)
+        return con.query(updateSql, [appointment.location, 
+            appointment.date, appointment.startTime, appointment.endTime, id], callback)
     }
 };
 module.exports=AppointmentController;

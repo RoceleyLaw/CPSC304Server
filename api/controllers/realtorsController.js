@@ -29,6 +29,12 @@ var RealtorsController={
         console.log('this is the updated realtor', realtor);
         return con.query(updateSql, [realtor.licenseNumber, realtor.phoneNumber, 
             realtor.realtorEmail, realtor.realtorName, id], callback)
-    }
+    },
+    
+    // Aggregation: get the numbers of houses/apts sold by every realtor and 
+    //              display them in descending order
+    getSalesInfo:function(callback){
+        return con.query("SELECT COUNT(listingID), r.licenseNumber, realtorName FROM cpsc304.SoldListings AS s, cpsc304.Realtors AS r WHERE s.licenseNumber = r.licenseNumber GROUP BY licenseNumber ORDER BY COUNT(listingID) DESC", callback)
+     },
 };
 module.exports=RealtorsController;

@@ -216,7 +216,7 @@ module.exports = function (app) {
     })
     .put(function(req, res, next){
         const id = req.params.appointmentID;
-        appointment.updatePostByID(id, req.body, function(err, count){
+        appointment.updateAppointmentsByID(id, req.body, function(err, count){
             if (err) {
                 res.json(err);
             } else {
@@ -281,6 +281,17 @@ module.exports = function (app) {
         }
         });
     });
+
+    app.route('/sales')
+    .get(function(req, res, next) {
+        realtors.getSalesInfo(function(err, result){
+            if (err){
+                res.json(err);
+            } else {
+                res.json(result);
+            }
+        });
+    })
     
     /**************************** Clients *************************************/
     app.route('/allClients')
