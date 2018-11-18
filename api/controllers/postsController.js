@@ -7,6 +7,20 @@ var PostsController={
         return con.query("SELECT * FROM cpsc304.Posts", callback)
     },
 
+    // DIVISION Query: get properties that are near by every type of facilities we have in db
+    getPostsNearAllFacilityTypes:function(callback){
+        return con.query("SELECT * FROM cpsc304.Posts\
+                          WHERE NOT EXISTS (SELECT type from cpsc304.Facilities\
+                                            WHERE Facilities.type\
+                                            NOT IN(SELECT type from cpsc304.IsCloseBy, cpsc304.Facilities\
+                                                   WHERE Posts.listingID = IsCloseBy.listingID AND Facilities.fid = IsCloseBy.fid))", callback);
+    },
+
+
+    getAllPosts:function(callback){
+        return con.query("SELECT * FROM cpsc304.Posts", callback)
+    },
+
     // NESTED Query
     getAllUnsoldPosts:function(callback){
         return con.query("SELECT * FROM cpsc304.Posts\
@@ -14,6 +28,7 @@ var PostsController={
                           NOT IN (SELECT listingID\
                             FROM cpsc304.SoldListings)", callback);
     },
+
 
     addNewPost:function(Post, callback){
         const randomID = RandomIDGenerator.getRandomID();

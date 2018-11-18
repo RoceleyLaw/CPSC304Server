@@ -37,6 +37,16 @@ module.exports = function (app) {
         });
     });
 
+    app.route('/postsNearAllFacilityType').get(function(req, res, next) {
+        posts.getPostsNearAllFacilityTypes(function(err, result){
+            if (err){
+                res.json(err);
+            } else {
+                res.json(result);
+            }
+        });
+    });
+
     // POST REQ - post a new real estate for sale
     app.route('/addNewPost').post(function(req,res,next){
         posts.addNewPost(req.body,function(err,count){

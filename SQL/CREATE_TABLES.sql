@@ -34,7 +34,8 @@ CREATE TABLE Facilities(
 fid int AUTO_INCREMENT,
 address CHAR(50),
 type CHAR(30),
-PRIMARY KEY (fID)
+PRIMARY KEY (fID),
+UNIQUE (address, type)
 );
 
 CREATE TABLE PostedRealEstate(
@@ -104,20 +105,17 @@ endTime TIME,
 PRIMARY KEY (listingID, licenseNumber, date, startTime, endTime),
 FOREIGN KEY (listingID) REFERENCES PostedRealEstate(listingID) ON UPDATE CASCADE ON DELETE CASCADE,
 FOREIGN KEY (licenseNumber) REFERENCES Realtors(licenseNumber) ON UPDATE CASCADE ON DELETE CASCADE,
-FOREIGN KEY (date, startTime, endTime) REFERENCES TimePeriod(date, startTime, endTime) ON DELETE CASCADE
+FOREIGN KEY (date, startTime, endTime) REFERENCES TimePeriod(date, startTime, endTime) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IsCloseBy(
 fid int,
-address CHAR(50),
 listingID int,
 PRIMARY KEY (fID, listingID),
-FOREIGN KEY (listingId) REFERENCES PostedRealEstate(listingId),
-FOREIGN KEY (fID) REFERENCES Facilities(fID)
+FOREIGN KEY (listingId) REFERENCES PostedRealEstate(listingId) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY (fID) REFERENCES Facilities(fID) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 ALTER TABLE Realtors
 ADD CHECK (LENGTH(licenseNumber) = 7);
 
-ALTER TABLE IsCloseBy
-DROP COLUMN address;
