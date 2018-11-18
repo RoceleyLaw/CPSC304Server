@@ -1,0 +1,9 @@
+INSERT INTO `cpsc304`.`BookOpenHouseFor` (`listingID`, `licenseNumber`, `date`, `startTime`, `endTime`) VALUES ('14311', '9737702', '2018-09-22', '15:32:13', '17:46:06');
+INSERT INTO `cpsc304`.`BookOpenHouseFor` (`listingID`, `licenseNumber`, `date`, `startTime`, `endTime`) VALUES ('68717', '9737702', '2018-09-22', '15:32:13', '17:46:06');
+INSERT INTO `cpsc304`.`BookOpenHouseFor` (`listingID`, `licenseNumber`, `date`, `startTime`, `endTime`) VALUES ('39720', '5571367', '2018-09-22', '15:32:13', '17:46:06');
+INSERT INTO `cpsc304`.`BookOpenHouseFor` (`listingID`, `licenseNumber`, `date`, `startTime`, `endTime`) VALUES ('70214', '5189490', '2018-09-22', '15:32:13', '17:46:06');
+INSERT INTO `cpsc304`.`BookOpenHouseFor` (`listingID`, `licenseNumber`, `date`, `startTime`, `endTime`) VALUES ('91472', '5189490', '2018-09-22', '15:32:13', '17:46:06');
+INSERT INTO `cpsc304`.`BookOpenHouseFor` (`listingID`, `licenseNumber`, `date`, `startTime`, `endTime`) VALUES ('57708', '4670238', '2018-09-22', '15:32:13', '17:46:06');
+INSERT INTO `cpsc304`.`BookOpenHouseFor` (`listingID`, `licenseNumber`, `date`, `startTime`, `endTime`) VALUES ('76424', '4680294', '2018-09-22', '15:32:13', '17:46:06');
+INSERT INTO `cpsc304`.`BookOpenHouseFor` (`listingID`, `licenseNumber`, `date`, `startTime`, `endTime`) VALUES ('97220', '5770319', '2018-09-22', '15:32:13', '17:46:06');
+INSERT INTO `cpsc304`.`BookOpenHouseFor` (`listingID`, `licenseNumber`, `date`, `startTime`, `endTime`) VALUES ('59727', '1518660', '2018-09-22', '15:32:13', '17:46:06');

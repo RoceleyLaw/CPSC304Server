@@ -13,7 +13,7 @@ var OpenHouseController={
             VALUES\
             (?,?,?,?,?)",
             [openHouse.date, openHouse.startTime, openHouse.endTime,
-            null, openHouse.licenseNumber, openHouse.date, openHouse.startTime, openHouse.endTime], callback);
+            openHouse.listingID, openHouse.licenseNumber, openHouse.date, openHouse.startTime, openHouse.endTime], callback);
     },
 
     getOpenHouseEventsbyRealtorID:function(id, callback){
