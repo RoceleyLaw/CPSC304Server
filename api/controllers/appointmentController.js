@@ -15,8 +15,17 @@ var AppointmentController={
                     ],callback);
     },
 
+
+
     deleteAppointmentbyID:function(id, callback){
         return con.query("DELETE FROM cpsc304.Appointments WHERE appointmentID=?", [id], callback)
+     },
+
+
+    getAppointmentbyID:function(id, callback){
+        console.log(id)
+        return con.query("SELECT * FROM cpsc304.Appointments\
+                          WHERE appointmentID=?", [id], callback)
      },
 
     getAppointmentsbyClientPhone:function(id, callback){

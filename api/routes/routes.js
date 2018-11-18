@@ -188,11 +188,24 @@ module.exports = function (app) {
         });
     })
 
-    // GET - get client appointments by realtorid
+    // GET - get realtor appointments by realtorid
     app.route('/appointments/byrealtor/:realtorid?')
     .get(function(req, res, next) {
         const id = req.params.realtorid;
         appointment.getAppointmentsbyRealtorID(id, function(err, result){
+            if (err){
+                res.json(err);
+            } else {     
+                res.json(result);
+            }
+        });
+    })
+
+    // GET - get appointment by its own id
+    app.route('/appointments/byid/:realtorid?')
+    .get(function(req, res, next) {
+        const id = req.params.realtorid;
+        appointment.getAppointmentbyID(id, function(err, result){
             if (err){
                 res.json(err);
             } else {     
