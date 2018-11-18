@@ -131,6 +131,17 @@ module.exports = function (app) {
         });
     });
 
+    app.route('/unsoldHouses')
+    .get(function(req, res, next) {
+        posts.getAllUnsoldHouses(function(err, result){
+            if (err){
+                res.json(err);
+            } else {
+                res.json(result);
+            }
+        });
+    })
+
     /**************************** Apartments *************************************/
     // GET REQ - get all posts that are apartments
     app.route('/allApts')
@@ -153,6 +164,17 @@ module.exports = function (app) {
             }
         });
     });
+
+    app.route('/unsoldApts')
+    .get(function(req, res, next) {
+        posts.getAllUnsoldApts(function(err, result){
+            if (err){
+                res.json(err);
+            } else {
+                res.json(result);
+            }
+        });
+    })
 
     /**************************** Appointments *************************************/   
     app.route('/appointments')

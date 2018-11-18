@@ -11,7 +11,8 @@ var PostsController={
     getAllUnsoldPosts:function(callback){
         return con.query("SELECT * FROM cpsc304.Posts\
                           WHERE cpsc304.Posts.listingID\
-                          NOT IN (SELECT cpsc304.SoldListings.listingID FROM cpsc304.Posts, cpsc304.SoldListings WHERE cpsc304.Posts.listingID = cpsc304.SoldListings.listingID)", callback);
+                          NOT IN (SELECT listingID\
+                            FROM cpsc304.SoldListings)", callback);
     },
 
     addNewPost:function(Post, callback){
@@ -42,13 +43,35 @@ var PostsController={
     
     // ISA relationship 
     getAllHouses:function(callback){
-        return con.query("SELECT * FROM cpsc304.Houses, cpsc304.Posts\
-                          WHERE cpsc304.Houses.listingID = cpsc304.Posts.listingID", callback)
+        return con.query("SELECT * FROM cpsc304.Posts\
+                          NATURAL JOIN cpsc304.Houses", callback)
     },
 
+    // Warning: by using the following query, attributes in Apartments would not show
+    // SELECT * FROM cpsc304.Apartments, cpsc304.Posts\
+    //                       WHERE cpsc304.Apartments.listingID = cpsc304.Posts.listingID
     getAllApts:function(callback){
-        return con.query("SELECT * FROM cpsc304.Apartments, cpsc304.Posts\
-                          WHERE cpsc304.Apartments.listingID = cpsc304.Posts.listingID", callback)
+        return con.query("SELECT * FROM cpsc304.Posts\
+                          NATURAL JOIN cpsc304.Apartments", callback)
+    },
+
+    // Complicated Query 1
+    getAllUnsoldHouses:function(callback){
+        return con.query("SELECT * FROM cpsc304.Houses\
+                          INNER JOIN cpsc304.Posts\
+                          ON cpsc304.Houses.listingID = cpsc304.Posts.listingID\
+                          WHERE cpsc304.Posts.listingID NOT IN\
+                                (SELECT listingID FROM cpsc304.SoldListings)\
+                           ", callback)
+    },
+
+    getAllUnsoldApts:function(callback){
+        return con.query("SELECT * FROM cpsc304.Apartments\
+                          INNER JOIN cpsc304.Posts\
+                          ON cpsc304.Apartments.listingID = cpsc304.Posts.listingID\
+                          WHERE cpsc304.Posts.listingID NOT IN\
+                                (SELECT listingID FROM cpsc304.SoldListings)\
+                            ", callback)
     },
 
     addNewHouse:function(House, callback){
