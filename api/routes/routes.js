@@ -7,6 +7,7 @@ var clients=require('../controllers/clientsController');
 var soldListings=require('../controllers/soldListingsController');
 var addressDetails=require('../controllers/addressDetailsController');
 var facilities=require('../controllers/facilitiesController');
+var openHouse=require('../controllers/openHouseController');
 
 module.exports = function (app) {
     
@@ -418,5 +419,40 @@ app.route('/facilityTypes')
         }
     });
 })
+
+/**************************** OpenHouses *************************************/
+app.route('/openhouses')
+       .post(function(req, res, next){
+        openHouse.addNewOpenHouseEvent(req.body, function(err, count){
+            if (err) {
+                res.json(err);
+            } else {
+                console.log(req.body);
+                res.json(req.body);
+             }
+         });
+       })
+       .get(function(req, res, next){
+        openHouse.getAllOpenHouseEvents(function(err, result){
+            if (err) {
+                res.json(err);
+            } else {
+                res.json(result);
+             }
+         });
+       });
+
+    // GET - get realtor open houses by realtorid
+    app.route('/openhouses/byrealtor/:realtorid?')
+    .get(function(req, res, next) {
+        const id = req.params.realtorid;
+        openHouse.getOpenHouseEventsbyRealtorID(id, function(err, result){
+            if (err){
+                res.json(err);
+            } else {     
+                res.json(result);
+            }
+        });
+    })
 
 }
