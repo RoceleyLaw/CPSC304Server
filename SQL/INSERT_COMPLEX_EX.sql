@@ -1,1 +1,0 @@
-SELECT COUNT(listingID), licenseNumber FROM soldListings GROUP BY licenseNumber 

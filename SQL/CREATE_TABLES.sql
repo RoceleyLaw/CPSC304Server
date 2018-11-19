@@ -1,10 +1,10 @@
 CREATE TABLE Realtors(
 licenseNumber CHAR(7),
-phoneNumber CHAR(10),
-email CHAR(30),
-name CHAR(30),
+r_phoneNumber CHAR(10),
+realtorEmail CHAR(30),
+realtorName CHAR(30),
 PRIMARY KEY (licenseNumber),
-UNIQUE (phoneNumber)
+UNIQUE (r_phoneNumber)
 );
 
 CREATE TABLE AddressDetails(
@@ -24,10 +24,10 @@ PRIMARY KEY (date, startTime, endTime)
 
 CREATE TABLE Clients(
 phoneNumber CHAR(10),
-name CHAR(30),
-email CHAR(30),
+clientName CHAR(30),
+clientEmail CHAR(30),
 PRIMARY KEY (phoneNumber),
-UNIQUE (name, email)
+UNIQUE (clientName, clientEmail)
 );
 
 CREATE TABLE Facilities(
@@ -115,7 +115,4 @@ PRIMARY KEY (fID, listingID),
 FOREIGN KEY (listingId) REFERENCES PostedRealEstate(listingId) ON UPDATE CASCADE ON DELETE CASCADE,
 FOREIGN KEY (fID) REFERENCES Facilities(fID) ON UPDATE CASCADE ON DELETE CASCADE
 );
-
-ALTER TABLE Realtors
-ADD CHECK (LENGTH(licenseNumber) = 7);
 

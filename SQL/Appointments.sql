@@ -1,1 +1,5 @@
-insert into Appointments (appointmentID, location, licenseNumber, date, startTime, endTime, phoneNumber) values (null, '47 Bonner Park', '9737702','2018-09-22', '15:32:13', '17:46:06','4141368425');
+INSERT INTO Appointments (appointmentID, location, licenseNumber, date, startTime, endTime, phoneNumber) VALUES (null, '47 Bonner Park', '9737702','2018-09-22', '15:32:13', '17:46:06','4141368425');
+INSERT INTO Appointments(appointmentID,licenseNumber,location,date,startTime,endTime,phoneNumber) VALUES (null,'1371983','UBC','2018-11-18T00:00:00.000Z','11:30:00','12:30:00','4718962950');
+INSERT INTO Appointments(appointmentID,licenseNumber,location,date,startTime,endTime,phoneNumber) VALUES (null,'1371983','Broadway City Centre','2018-11-30T00:00:00.000Z','04:00:00','05:00:00','6362244049');
+INSERT INTO Appointments(appointmentID,licenseNumber,location,date,startTime,endTime,phoneNumber) VALUES (null,'1518660','Bus loop 14','2018-10-10T00:00:00.000Z','03:00:00','03:30:00','2508204676');
+INSERT INTO Appointments(appointmentID,licenseNumber,location,date,startTime,endTime,phoneNumber) VALUES (null,'1518660','Starbucks','2018-10-11T00:00:00.000Z','04:30:00','05:30:00','2508204676');

@@ -1,8 +1,12 @@
 var con=require('../../dbconnection'); //reference of dbconnection.js
 var OpenHouseController={
-    //TODO: take SQL commands away from this file, isolate them into a new js file
+    //Formal Specification 5:
     getAllOpenHouseEvents:function(callback){
-        return con.query("SELECT * FROM cpsc304.BookOpenHouseFor", callback)
+        return con.query("SELECT * FROM cpsc304.BookOpenHouseFor\
+                          NATURAL JOIN cpsc304.Posts\
+                          NATURAL JOIN cpsc304.Realtors\
+                          NATURAL JOIN cpsc304.TimePeriod;\
+                            ", callback)
     },
 
     addNewOpenHouseEvent:function(openHouse, callback){
@@ -21,6 +25,6 @@ var OpenHouseController={
         return con.query("SELECT * FROM cpsc304.BookOpenHouseFor, cpsc304.Clients\
                           WHERE cpsc304.BookOpenHouseFor.phoneNumber=cpsc304.Clients.phoneNumber\
                           AND cpsc304.BookOpenHouseFor.licenseNumber=?", [id], callback)
-     }
+     },
 };
 module.exports=OpenHouseController;

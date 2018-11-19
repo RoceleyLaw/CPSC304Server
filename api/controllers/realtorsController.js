@@ -8,7 +8,7 @@ var RealtorsController={
     addNewRealtor:function(realtor, callback){
         // The array has only one value;
         console.log('Realtor:',realtor);
-        return con.query("INSERT INTO cpsc304.Realtors(licenseNumber, phoneNumber, realtorEmail, realtorName) values (?,?,?,?)",
+        return con.query("INSERT INTO cpsc304.Realtors(licenseNumber, r_phoneNumber, realtorEmail, realtorName) values (?,?,?,?)",
                 [realtor.licenseNumber, realtor.phoneNumber, realtor.realtorEmail, realtor.realtorName],callback);
     },
 
@@ -24,7 +24,7 @@ var RealtorsController={
     updateRealtorByID:function(id, realtor, callback){
         const updateSql =
                 "UPDATE cpsc304.Realtors\
-                 SET licenseNumber=?, phoneNumber=?, realtorEmail=?, realtorName=?\
+                 SET licenseNumber=?, r_phoneNumber=?, realtorEmail=?, realtorName=?\
                  WHERE licenseNumber=?"
         console.log('this is the updated realtor', realtor);
         return con.query(updateSql, [realtor.licenseNumber, realtor.phoneNumber, 

@@ -1,2 +1,8 @@
 insert into SoldListings(agreementNumber, finalPrice, soldDate, completionDate, phoneNumber, licenseNumber, listingID) values (null,100000,'2018-02-14','2018-11-14','1024360825', '1371983','39720');
 insert into SoldListings(agreementNumber, finalPrice, soldDate, completionDate, phoneNumber, licenseNumber, listingID) values (null,2000000,'2018-02-14','2018-11-14','1024360825', '1371983','97220');
+insert into SoldListings(agreementNumber, finalPrice, soldDate, completionDate, phoneNumber, licenseNumber, listingID) values (null,1000000,'2018-02-14','2018-11-14','1024360825', '2284578','27718');
+insert into SoldListings(agreementNumber, finalPrice, soldDate, completionDate, phoneNumber, licenseNumber, listingID) values (null,1000000,'2018-02-14','2018-11-14','1024360825', '2284578','27719');
+insert into SoldListings(agreementNumber, finalPrice, soldDate, completionDate, phoneNumber, licenseNumber, listingID) values (null,1000000,'2018-02-14','2018-11-14','1024360825', '2284578','27720');
+insert into SoldListings(agreementNumber, finalPrice, soldDate, completionDate, phoneNumber, licenseNumber, listingID) values (null,1000000,'2018-02-14','2018-11-14','1024360825', '2284578','28888');
+insert into SoldListings(agreementNumber, finalPrice, soldDate, completionDate, phoneNumber, licenseNumber, listingID) values (null,1500000,'2018-02-14','2018-11-14','1024360825', '5770319','28889');
+insert into SoldListings(agreementNumber, finalPrice, soldDate, completionDate, phoneNumber, licenseNumber, listingID) values (null,1600000,'2018-02-14','2018-11-14','1024360825', '5189490','28890');

@@ -20,3 +20,8 @@ SELECT `Facilities`.`fid`,
 		`IsCloseBy`.`listingID`
 FROM `cpsc304`.`Facilities`
 INNER JOIN IsCloseBy ON Facilities.fid = IsCloseBy.fid;
+
+CREATE VIEW AgentSoldListings AS
+SELECT *
+FROM `cpsc304`.`SoldListings` 
+NATURAL JOIN  `cpsc304`.`Realtors`;
